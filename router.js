@@ -1,5 +1,6 @@
+var auth=require('./auth')
 module.exports=(app)=>{
-    app.use('/api',require('./api'))
+    app.use('/api',auth.verifyRequest,require('./api'))
     app.use('/',landingPage)   
 }
 //localhost:5000/api

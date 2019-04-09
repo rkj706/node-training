@@ -7,4 +7,3 @@ EventEmitter.on('connection',function(data){
 })
 
 EventEmitter.emit('connection',{data:"Dasd"})
-
