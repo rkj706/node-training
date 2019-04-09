@@ -36,21 +36,21 @@ function checkIfUserExist(userName){
 // async await
 async function saveUserData(req,res){
     let body=req.body;
-    try{
-    let response=  await checkIfUserExist(body.userName)
-    let userSavedReponse= await saveUserDataPromise(body)
-    res.status(200).json({message:"user saved"})    
-    }
-    catch{
-        res.status(500).json({message:"Internal error"})  
-    }
+    // try{
+    // let response=  await checkIfUserExist(body.userName)
+    // let userSavedReponse= await saveUserDataPromise(body)
+    // res.status(200).json({message:"user saved"})    
+    // }
+    // catch{
+    //     res.status(500).json({message:"Internal"})  
+    // }
 
     checkIfUserExist(body.userName)
     .then(function(result){
-        saveUserDataPromise(function(result){
-            console.log(result)
-            res.status(200).json({message:"saved"})
-        }).catch(function(error){
+        saveUserDataPromise(body).then(function(){
+            res.status(200).json({message:saved})
+        })
+        .catch(function(error){
             console.log(error)
             res.status(500).json({message:"internal Error"})
         })
